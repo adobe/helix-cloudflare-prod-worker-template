@@ -17,9 +17,19 @@ Update the following entries:
 - `account_id` (your Cloudflare Account ID)
 - `ORIGIN_HOSTNAME` (the hostname of your Helix project, e.g. `main--mysite--hlxsites.live`)
 
+## 3. Configure push invalidation (optional)
+
+If you have succesfully configured [push invalidation](https://www.hlx.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project your worker should send the following opt-in header:
+
+```
+X-Push-Invalidation: enabled
+```
+
+All you have to do is to uncomment the respective [line](https://github.com/adobe/helix-cloudflare-prod-worker-template/blob/main/src/index.mjs#L22) in the worker source code.
+
 ## 3. Publish your site
 
-Install `wrangler` (if you haven't done so already);
+Install `wrangler` (if you haven't done so already):
 
 ```sh
 npm i @cloudflare/wrangler -g
