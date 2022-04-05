@@ -1,0 +1,22 @@
+name = "helix-prod-worker"
+# type = "javascript" is required to use the `[build]` section
+type = "javascript"
+workers_dev = true
+# TODO: set route
+route = "*.mydomain.com/*"
+# TODO: set Zone ID
+zone_id = "<zone id>"
+# TODO: set Account ID
+account_id = "<account id>"
+
+compatibility_date = "2021-11-22"
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "modules"
+main = "./index.mjs"
+
+[vars]
+# TODO: set origin host name
+ORIGIN_HOSTNAME = "main--mysite--hlxsites.hlx.live"
