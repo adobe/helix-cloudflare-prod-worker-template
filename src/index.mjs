@@ -16,11 +16,10 @@ const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
   url.hostname = env.ORIGIN_HOSTNAME;
   const req = new Request(url, request);
-  console.log('got req!');
   req.headers.set('x-forwarded-host', req.headers.get('host'));
-  // set the following header if push invalidation is configured
+  // TODO: set the following header if push invalidation is configured
   // (see https://www.hlx.live/docs/setup-byo-cdn-push-invalidation#cloudflare)
-  req.headers.set('x-push-invalidation', 'enabled');
+  // req.headers.set('x-push-invalidation', 'enabled');
   let resp = await fetch(req, {
     cf: {
       // cf doesn't cache html by default: need to override the default behavior
