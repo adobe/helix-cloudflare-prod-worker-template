@@ -38,7 +38,7 @@ npm i @cloudflare/wrangler -g
 Publish your site:
 
 ```sh
-npm init
+npm install
 wrangler publish
 ```
 
