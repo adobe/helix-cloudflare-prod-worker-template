@@ -17,6 +17,8 @@ Update the following entries:
 - `account_id` (your Cloudflare Account ID)
 - `ORIGIN_HOSTNAME` (the hostname of your Helix project, e.g. `main--mysite--hlxsites.live`)
 
+You can find your `account_id` and `zone_id` in the right sidebar of the site's overview tab at https://dash.cloudflare.com (you may have to scroll down).
+
 ## 3. Configure push invalidation (optional)
 
 If you have succesfully configured [push invalidation](https://www.hlx.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project your worker should send the following opt-in header:
