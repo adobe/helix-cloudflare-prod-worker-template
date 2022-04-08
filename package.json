@@ -5,14 +5,13 @@
   "description": "A template for kick starting a Helix Production Workers project",
   "module": "./dist/index.mjs",
   "scripts": {
-    "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "log": "wrangler tail -f pretty",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "prettier": "2.6.2",
-    "rollup": "2.70.1"
+    "prettier": "2.6.2"
   }
 }
