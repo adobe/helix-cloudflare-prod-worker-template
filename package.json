@@ -3,7 +3,7 @@
   "name": "helix-prod-worker",
   "version": "1.0.0",
   "description": "A template for kick starting a Helix Production Workers project",
-  "module": "./dist/index.mjs",
+  "module": "./src/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "log": "wrangler tail -f pretty",
