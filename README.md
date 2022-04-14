@@ -29,7 +29,7 @@ X-Push-Invalidation: enabled
 
 All you have to do is to uncomment the respective [line](https://github.com/adobe/helix-cloudflare-prod-worker-template/blob/main/src/index.mjs#L22) in the worker source code.
 
-## 3. Publish your site
+## 4. Publish your site
 
 Install `wrangler` (if you haven't done so already):
 
@@ -43,7 +43,7 @@ Publish your site:
 wrangler publish
 ```
 
-## 4. Test your site
+## 5. Test your site
 
 Point your browser to your site (e.g. `https://www.mydomain.com/`).
 
