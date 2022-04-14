@@ -2,16 +2,12 @@
   "private": true,
   "name": "helix-prod-worker",
   "version": "1.0.0",
-  "description": "A template for kick starting a Helix Production Workers project",
+  "description": "A template for kick starting a Helix Production Worker project",
   "module": "./src/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "log": "wrangler tail -f pretty",
-    "format": "prettier --write '**/*.{js,css,json,md}'"
+    "log": "wrangler tail -f pretty"
   },
   "author": "",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "prettier": "2.6.2"
-  }
+  "license": "Apache-2.0"
 }
