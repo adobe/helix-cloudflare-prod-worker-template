@@ -17,7 +17,8 @@ const handleRequest = async (request, env, ctx) => {
   url.hostname = env.ORIGIN_HOSTNAME;
   const req = new Request(url, request);
   req.headers.set('x-forwarded-host', req.headers.get('host'));
-  // Set the following header if push invalidation is configured
+  req.headers.set('x-byo-cdn-type', 'cloudflare');
+  // set the following header if push invalidation is configured
   // (see https://www.hlx.live/docs/setup-byo-cdn-push-invalidation#cloudflare)
   req.headers.set('x-push-invalidation', 'enabled');
   let resp = await fetch(req, {
