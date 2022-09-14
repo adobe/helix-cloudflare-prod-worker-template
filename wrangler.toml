@@ -1,10 +1,8 @@
 name = "helix-prod-worker"
-type = "javascript"
+main = "src/index.mjs"
 workers_dev = true
 # TODO: set route
 route = "*.mydomain.com/*"
-# TODO: set Zone ID
-zone_id = "<zone id>"
 # TODO: set Account ID
 account_id = "<account id>"
 
@@ -12,11 +10,6 @@ compatibility_date = "2022-04-08"
 
 [build]
 command = "npm install"
-
-[build.upload]
-dir = "src"
-format = "modules"
-main = "./index.mjs"
 
 [vars]
 # TODO: set origin host name
