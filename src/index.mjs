@@ -15,10 +15,7 @@
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
   if (url.pathname.startsWith('/drafts/')) {
-    return new Response('404 - Not Found', {
-      status: 404,
-      statusText: 'Not Found',
-    });
+    return new Response('Not Found', { status: 404 });
   }
 
   url.hostname = env.ORIGIN_HOSTNAME;
