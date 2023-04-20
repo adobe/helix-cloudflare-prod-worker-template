@@ -14,6 +14,13 @@
 
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
+  if (url.pathname.startsWith('/drafts/')) {
+    return new Response('404 - Not Found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+  }
+
   url.hostname = env.ORIGIN_HOSTNAME;
   const req = new Request(url, request);
   req.headers.set('x-forwarded-host', req.headers.get('host'));
