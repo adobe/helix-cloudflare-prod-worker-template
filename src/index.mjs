@@ -14,8 +14,16 @@
 
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
+
   if (url.pathname.startsWith('/drafts/')) {
     return new Response('Not Found', { status: 404 });
+  }
+
+  let strippedQS;
+  if (url.search && !url.pathname.match(/\.[0-9a-z]+$/i)) {
+    // extensionless request w/ query string: strip query string
+    strippedQS = url.search;
+    url.search = '';
   }
 
   url.hostname = env.ORIGIN_HOSTNAME;
@@ -32,6 +40,12 @@ const handleRequest = async (request, env, ctx) => {
     },
   });
   resp = new Response(resp.body, resp);
+  if (resp.status === 301 && strippedQS) {
+    const location = resp.headers.get('location');
+    if (location && !location.match(/\?.*$/)) {
+      resp.headers.set('location', `${location}${strippedQS}`);
+    }
+  }
   resp.headers.delete('age');
   resp.headers.delete('x-robots-tag');
   return resp;
