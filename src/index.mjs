@@ -14,7 +14,19 @@
 
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
-
+  if (url.port) {
+    // Cloudflare opens a couple more ports than 443, so we redirect visitors
+    // to the default port to avoid confusion. 
+    // https://developers.cloudflare.com/fundamentals/reference/network-ports/#network-ports-compatible-with-cloudflares-proxy
+    const redirectTo = new URL(request.url);
+    redirectTo.port = '';
+    return new Response("Moved permanently to " + redirectTo.href, {
+      status: 301,
+      headers: {
+        location: redirectTo.href
+      }
+    });
+  }
   if (url.pathname.startsWith('/drafts/')) {
     return new Response('Not Found', { status: 404 });
   }
