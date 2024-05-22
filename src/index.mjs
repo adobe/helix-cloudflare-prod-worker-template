@@ -20,7 +20,7 @@ const handleRequest = async (request, env, ctx) => {
     // https://developers.cloudflare.com/fundamentals/reference/network-ports/#network-ports-compatible-with-cloudflares-proxy
     const redirectTo = new URL(request.url);
     redirectTo.port = '';
-    return new Response("Moved permanently to " + redirectTo.href, {
+    return new Response('Moved permanently to ' + redirectTo.href, {
       status: 301,
       headers: {
         location: redirectTo.href
