@@ -6,7 +6,7 @@ A template for a Cloudflare worker which serves as a production CDN for a Helix 
 
 ## 1. Setup Cloudflare production site
 
-Follow the instructions [here](https://www.hlx.live/docs/byo-cdn-cloudflare-setup).
+Follow the instructions [here](https://www.aem.live/docs/byo-cdn-cloudflare-setup).
 
 ## 2. Edit `wrangler.toml`
 
@@ -15,13 +15,13 @@ Update the following entries:
 - `route` (route for your site, e.g. `*.mydomain.com/*`)
 - `zone_id` (your Cloudflare Zone ID)
 - `account_id` (your Cloudflare Account ID)
-- `ORIGIN_HOSTNAME` (the hostname of your Helix project, e.g. `main--mysite--hlxsites.hlx.live`)
+- `ORIGIN_HOSTNAME` (the hostname of your Helix project, e.g. `main--mysite--hlxsites.aem.live`)
 
 You can find your `account_id` and `zone_id` in the right sidebar of your site's overview tab at https://dash.cloudflare.com (you may have to scroll down).
 
 ## 3. Configure push invalidation (optional)
 
-If you have succesfully configured [push invalidation](https://www.hlx.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project your worker should send the following opt-in header:
+If you have succesfully configured [push invalidation](https://www.aem.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project your worker should send the following opt-in header:
 
 ```
 X-Push-Invalidation: enabled
