@@ -2,7 +2,7 @@
 
 A template for a Cloudflare worker which serves as a production CDN for a Helix project.
 
-[`src/index.mjs`](https://github.com/adobe/helix-cloudflare-prod-worker-template/blob/main/src/index.mjs) is the content of the Workers script.
+[`src/index.mjs`](https://github.com/adobe/helix-cloudflare-prod-worker-template/blob/hlx/src/index.mjs) is the content of the Workers script.
 
 ## 1. Setup Cloudflare production site
 
