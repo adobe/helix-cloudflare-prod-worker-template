@@ -48,6 +48,9 @@ const handleRequest = async (request, env, ctx) => {
   if (env.PUSH_INVALIDATION) {
     req.headers.set('x-push-invalidation', 'enabled');
   }
+  if (env.ORIGIN_AUTHENTICATION) {
+    req.headers.set('authorization', `token ${env.ORIGIN_AUTHENTICATION}`);
+  }
   let resp = await fetch(req, {
     cf: {
       // cf doesn't cache html by default: need to override the default behavior

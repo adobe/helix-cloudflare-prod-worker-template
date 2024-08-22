@@ -29,7 +29,17 @@ X-Push-Invalidation: enabled
 
 All you have to do is set the `PUSH_INVALIDATION` environment variable in the Cloudflare dashboard to `enabled` or do the same via wrangler.
 
-## 4. Publish your site
+## 4. Enable Origin Authentication (optional)
+
+If you have enabled [Site Authentication](https://www.aem.live/docs/authentication-setup-site) for your project your worker should send the following header:
+
+```
+Authorization: token <token>
+```
+
+All you have to do is set the `ORIGIN_AUTHENTICATION` environment variable in the Cloudflare dashboard to the token you have configured in your AEM project or do the same via wrangler.
+
+## 5. Publish your site
 
 Install `wrangler` (if you haven't done so already):
 
