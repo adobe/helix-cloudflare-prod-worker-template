@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "helix-prod-worker",
+  "name": "aem-prod-worker",
   "version": "1.0.0",
-  "description": "A template for kick starting a Helix Production Worker project",
+  "description": "A template for kick starting a AEM Production Worker project",
   "module": "./src/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
