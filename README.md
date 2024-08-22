@@ -27,7 +27,7 @@ If you have succesfully configured [push invalidation](https://www.aem.live/docs
 X-Push-Invalidation: enabled
 ```
 
-All you have to do is to uncomment the respective [line](https://github.com/adobe/helix-cloudflare-prod-worker-template/blob/main/src/index.mjs#L22) in the worker source code.
+All you have to do is set the `PUSH_INVALIDATION` environment variable in the Cloudflare dashboard to `enabled` or do the same via wrangler.
 
 ## 4. Publish your site
 
