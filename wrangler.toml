@@ -13,4 +13,12 @@ command = "npm install"
 
 [vars]
 # TODO: set origin host name
-ORIGIN_HOSTNAME = "main--mysite--hlxsites.hlx.live"
+ORIGIN_HOSTNAME = "main--mysite--hlxsites.aem.live"
+
+# Optional, but recommended: enable push invalidation
+# see https://www.aem.live/docs/setup-byo-cdn-push-invalidation#cloudflare
+# PUSH_INVALIDATION = "enabled"
+
+# Optional: enable origin authentication
+# see https://www.aem.live/docs/authentication-setup-site
+# ORIGIN_AUTHENTICATION = "hlx_YOUR_TOKEN_HERE"
