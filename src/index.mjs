@@ -12,6 +12,14 @@
 
 'use strict';
 
+const getExtension = (path) => {
+  const basename = path.split('/').pop();
+  const pos = basename.lastIndexOf('.');
+  return (basename === '' || pos < 1) ? '' : basename.slice(pos + 1);
+};
+
+const isMediaRequest = (url) => /\/media_[0-9a-f]{40,}[/a-zA-Z0-9_-]*\.[0-9a-z]+$/.test(url.pathname);
+
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
   if (url.port) {
@@ -31,13 +39,31 @@ const handleRequest = async (request, env, ctx) => {
     return new Response('Not Found', { status: 404 });
   }
 
-  let strippedQS;
-  if (url.search && !url.pathname.match(/\.[0-9a-z]+$/i)) {
-    // extensionless request w/ query string: strip query string
-    strippedQS = url.search;
+  const extension = getExtension(url.pathname);
+
+  // remember original search params
+  const savedSearch = url.search;
+
+  // sanitize search params
+  const { searchParams } = url;
+  if (isMediaRequest(url)) {
+    for (const [key] of searchParams.entries()) {
+      if (!['format', 'height', 'optimize', 'width'].includes(key)) {
+        searchParams.delete(key);
+      }
+    }
+  } else if (extension === 'json') {
+    for (const [key] of searchParams.entries()) {
+      if (!['limit', 'offset', 'sheet'].includes(key)) {
+        searchParams.delete(key);
+      }
+    }
+  } else {
+    // neither media nor json request: strip search params
     url.search = '';
   }
-
+  searchParams.sort();
+  
   url.hostname = env.ORIGIN_HOSTNAME;
   if (!url.origin.match(/^https:\/\/main--.*--.*\.(?:aem|hlx)\.live/)) {
     return new Response('Invalid ORIGIN_HOSTNAME', { status: 500 });
@@ -58,10 +84,10 @@ const handleRequest = async (request, env, ctx) => {
     },
   });
   resp = new Response(resp.body, resp);
-  if (resp.status === 301 && strippedQS) {
+  if (resp.status === 301 && savedSearch) {
     const location = resp.headers.get('location');
     if (location && !location.match(/\?.*$/)) {
-      resp.headers.set('location', `${location}${strippedQS}`);
+      resp.headers.set('location', `${location}${savedSearch}`);
     }
   }
   resp.headers.delete('age');
