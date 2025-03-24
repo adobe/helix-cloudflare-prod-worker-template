@@ -17,7 +17,7 @@ Update the following entries:
 - `account_id` (your Cloudflare Account ID)
 - `ORIGIN_HOSTNAME` (the hostname of your AEM project, e.g. `main--mysite--hlxsites.aem.live`)
 
-You can find your `account_id` and `zone_id` in the right sidebar of your site's overview tab at https://dash.cloudflare.com (you may have to scroll down).
+To find your `account_id` and `zone_id` visit the [Websites Dashboard](https://dash.cloudflare.com/zones) in Cloudflare, select your site they will be listed on the right hand side of the dashboard under `API`.
 
 ## 3. Configure push invalidation (optional)
 
@@ -39,7 +39,7 @@ Authorization: token <token>
 
 All you have to do is set the `ORIGIN_AUTHENTICATION` environment variable in the Cloudflare dashboard to the token you have configured in your AEM project or do the same via wrangler.
 
-## 5. Publish your site
+## 5. Deploy your site
 
 Install `wrangler` (if you haven't done so already):
 
@@ -50,7 +50,7 @@ npm i @cloudflare/wrangler -g
 Publish your site:
 
 ```sh
-wrangler publish
+wrangler deploy
 ```
 
 ## 5. Test your site
