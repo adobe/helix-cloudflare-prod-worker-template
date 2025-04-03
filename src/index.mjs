@@ -71,7 +71,7 @@ const handleRequest = async (request, env, ctx) => {
   const req = new Request(url, request);
   req.headers.set('x-forwarded-host', req.headers.get('host'));
   req.headers.set('x-byo-cdn-type', 'cloudflare');
-  if (env.PUSH_INVALIDATION) {
+  if (env.PUSH_INVALIDATION !== 'disabled') {
     req.headers.set('x-push-invalidation', 'enabled');
   }
   if (env.ORIGIN_AUTHENTICATION) {
