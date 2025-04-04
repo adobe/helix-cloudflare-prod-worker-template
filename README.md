@@ -19,15 +19,15 @@ Update the following entries:
 
 To find your `account_id` and `zone_id` visit the [Websites Dashboard](https://dash.cloudflare.com/zones) in Cloudflare, select your site they will be listed on the right hand side of the dashboard under `API`.
 
-## 3. Configure push invalidation (optional)
+## 3. Push invalidation
 
-If you have succesfully configured [push invalidation](https://www.aem.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project your worker should send the following opt-in header:
+Configure [push invalidation](https://www.aem.live/docs/setup-byo-cdn-push-invalidation#cloudflare) for your project, as your worker will send the following header by default:
 
 ```
 X-Push-Invalidation: enabled
 ```
 
-All you have to do is set the `PUSH_INVALIDATION` environment variable in the Cloudflare dashboard to `enabled` or do the same via wrangler.
+If you need to opt-out of push-invalidation, you can set the `PUSH_INVALIDATION` environment variable in the Cloudflare dashboard to `disabled` or do the same via wrangler. Keep in mind that this will increase origin traffic and reduce performance so this should only be used on secondary lower environments.
 
 ## 4. Enable Origin Authentication (optional)
 
