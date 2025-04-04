@@ -1,4 +1,4 @@
-name = "helix-prod-worker"
+name = "aem-prod-worker"
 main = "src/index.mjs"
 workers_dev = true
 # TODO: set route
@@ -15,9 +15,11 @@ command = "npm install"
 # TODO: set origin host name
 ORIGIN_HOSTNAME = "main--mysite--hlxsites.aem.live"
 
-# Optional, but recommended: enable push invalidation
-# see https://www.aem.live/docs/setup-byo-cdn-push-invalidation#cloudflare
-# PUSH_INVALIDATION = "enabled"
+# Optional and not recommended: disable push invalidation
+# Uncomment the following line if you need to opt-out of push-invalidation.
+# Keep in mind that this will increase origin traffic and reduce performance
+# so this should only be used on secondary lower environments.
+# PUSH_INVALIDATION = "disabled"
 
 # Optional: enable origin authentication
 # see https://www.aem.live/docs/authentication-setup-site
