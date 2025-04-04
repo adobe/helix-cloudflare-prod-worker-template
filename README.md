@@ -1,4 +1,4 @@
-# helix-cloudflare-prod-worker-template
+# aem-cloudflare-prod-worker
 
 A template for a Cloudflare worker which serves as a production CDN for an AEM project.
 
