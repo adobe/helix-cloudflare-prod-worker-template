@@ -19,6 +19,8 @@ const getExtension = (path) => {
 };
 
 const isMediaRequest = (url) => /\/media_[0-9a-f]{40,}[/a-zA-Z0-9_-]*\.[0-9a-z]+$/.test(url.pathname);
+const isRUMRequest = (url) => /\/\.(rum|optel)\/.*/.test(url.pathname);
+
 
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
@@ -35,8 +37,16 @@ const handleRequest = async (request, env, ctx) => {
       }
     });
   }
+
   if (url.pathname.startsWith('/drafts/')) {
     return new Response('Not Found', { status: 404 });
+  }
+
+  if(isRUMRequest(url)) {
+    // only allow GET, POST, OPTIONS
+    if(!['GET', 'POST', 'OPTIONS'].includes(request.method)) {
+      return new Response('Method Not Allowed', { status: 405 });
+    }
   }
 
   const extension = getExtension(url.pathname);
@@ -69,6 +79,7 @@ const handleRequest = async (request, env, ctx) => {
     return new Response('Invalid ORIGIN_HOSTNAME', { status: 500 });
   }
   const req = new Request(url, request);
+  req.headers.set('user-agent', req.headers.get('user-agent'));
   req.headers.set('x-forwarded-host', req.headers.get('host'));
   req.headers.set('x-byo-cdn-type', 'cloudflare');
   if (env.PUSH_INVALIDATION !== 'disabled') {
@@ -78,6 +89,7 @@ const handleRequest = async (request, env, ctx) => {
     req.headers.set('authorization', `token ${env.ORIGIN_AUTHENTICATION}`);
   }
   let resp = await fetch(req, {
+    method: req.method,
     cf: {
       // cf doesn't cache html by default: need to override the default behavior
       cacheEverything: true,
