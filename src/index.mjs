@@ -19,7 +19,7 @@ const getExtension = (path) => {
 };
 
 const isMediaRequest = (url) => /\/media_[0-9a-f]{40,}[/a-zA-Z0-9_-]*\.[0-9a-z]+$/.test(url.pathname);
-const isRUMRequest = (url) => /\/\.rum\/.*/.test(url.pathname);
+const isRUMRequest = (url) => /\/\.(rum|optel)\/.*/.test(url.pathname);
 
 
 const handleRequest = async (request, env, ctx) => {
